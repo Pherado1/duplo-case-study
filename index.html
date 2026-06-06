@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duplo VCG Case Study — Feranmi Akinleye</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#F6F4EF;
+    --white:#FFFFFF;
+    --ink:#13121E;
+    --ink-mid:#3B3A4A;
+    --ink-muted:#79788A;
+    --blue:#0E4DA4;
+    --blue-dark:#093580;
+    --blue-soft:#EEF4FF;
+    --blue-mid:#B5CAEE;
+    --amber:#9B6207;
+    --amber-soft:#FEF4DC;
+    --amber-mid:#F0C060;
+    --border:#E0DCD2;
+    --border-strong:#C8C3B8;
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'Outfit',sans-serif;
+    --r:8px;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.75}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ─── Layout ─── */
+  .container{max-width:800px;margin:0 auto;padding:0 1.5rem}
+  .section{padding:4rem 0 0}
+  .section-last{padding:4rem 0 5rem}
+
+  /* ─── Typography ─── */
+  .display{font-family:var(--serif);font-weight:400;line-height:1.15;letter-spacing:-0.02em;color:var(--ink)}
+  .display-xl{font-size:clamp(2.1rem,5vw,3.1rem)}
+  h2.section-heading{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--ink);margin-bottom:1.25rem;line-height:1.3}
+  h3.sub-heading{font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:0.6rem}
+  p{color:var(--ink-mid);margin-bottom:1rem}
+  p:last-child{margin-bottom:0}
+  .label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted)}
+  hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0}
+
+  /* ─── Hero ─── */
+  .hero{padding:4.5rem 0 3rem;border-bottom:1px solid var(--border)}
+  .hero-eyebrow{display:inline-block;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);background:var(--blue-soft);padding:0.35rem 0.85rem;border-radius:100px;margin-bottom:1.5rem}
+  .hero-title{margin-bottom:0.6rem}
+  .hero-sub{font-family:var(--serif);font-size:clamp(1.1rem,2.3vw,1.4rem);font-weight:300;font-style:italic;color:var(--ink-muted);margin-bottom:2rem;line-height:1.45}
+  .byline{display:flex;align-items:center;gap:1rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+  .byline-avatar{width:42px;height:42px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:600;color:#fff;flex-shrink:0}
+  .byline-name{font-weight:600;font-size:0.95rem;color:var(--ink)}
+  .byline-role{font-size:0.82rem;color:var(--ink-muted)}
+
+  /* ─── Metrics Row ─── */
+  .metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:2rem 0}
+  .metric-cell{background:var(--white);padding:1.25rem 1rem;text-align:center}
+  .metric-num{font-family:var(--serif);font-size:1.65rem;font-weight:600;color:var(--blue);line-height:1;display:block;margin-bottom:0.3rem}
+  .metric-lbl{font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted)}
+  @media(max-width:600px){.metrics-row{grid-template-columns:repeat(2,1fr)}}
+
+  /* ─── Disclaimer ─── */
+  .disclaimer{background:var(--amber-soft);border:1px solid var(--amber-mid);border-radius:var(--r);padding:1rem 1.25rem;display:flex;gap:0.75rem;align-items:flex-start;margin:2rem 0}
+  .disclaimer p{font-size:0.85rem;color:var(--ink-mid);margin:0}
+  .disclaimer strong{color:var(--amber);font-weight:600}
+
+  /* ─── Section Label ─── */
+  .section-label{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem}
+  .section-label-line{flex:1;height:1px;background:var(--border)}
+  .section-label-text{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);white-space:nowrap}
+
+  /* ─── Toggle Block ─── */
+  .conversations-wrapper{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:2rem 0}
+  .conv-toggle-btn{width:100%;background:var(--white);border:none;cursor:pointer;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;text-align:left;transition:background 0.15s}
+  .conv-toggle-btn:hover{background:#F1EDE6}
+  .conv-toggle-btn+.conv-toggle-btn{border-top:1px solid var(--border)}
+  .conv-toggle-btn.active{background:var(--blue-soft)}
+  .toggle-label{display:flex;align-items:center;gap:0.75rem}
+  .toggle-tag{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;background:var(--blue-soft);color:var(--blue);padding:0.2rem 0.6rem;border-radius:100px;border:1px solid var(--blue-mid)}
+  .conv-toggle-btn.active .toggle-tag{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .toggle-title{font-weight:600;font-size:0.95rem;color:var(--ink)}
+  .toggle-arrow{font-size:0.9rem;color:var(--ink-muted);transition:transform 0.3s ease;display:inline-block}
+  .conv-toggle-btn.active .toggle-arrow{transform:rotate(180deg)}
+  .toggle-content{height:0;overflow:hidden;transition:height 0.35s cubic-bezier(0.4,0,0.2,1);background:var(--bg)}
+  .toggle-inner{padding:0 1.5rem 1.5rem}
+
+  /* ─── Call Blocks ─── */
+  .call-block{background:var(--white);border:1px solid var(--border);border-radius:var(--r);margin:1rem 0}
+  .call-header{padding:0.9rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
+  .call-header h4{font-family:var(--serif);font-size:1rem;font-weight:400;color:var(--ink)}
+  .call-badge{font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.55rem;border-radius:100px}
+  .badge-sales{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE}
+  .badge-cs{background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-mid)}
+  .call-body{padding:1.25rem}
+
+  /* ─── Attendees ─── */
+  .attendees{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.85rem}
+  .attendee-pill{font-size:0.75rem;font-weight:500;background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:0.2rem 0.65rem;color:var(--ink-mid)}
+  .attendee-pill.missing{background:#FFF1F2;border-color:#FECDD3;color:#BE123C}
+  .attendees-label{font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.45rem}
+
+  /* ─── Transcript ─── */
+  .transcript{border-top:1px solid var(--border);padding-top:1rem;margin-top:0.5rem}
+  .exchange{display:grid;grid-template-columns:90px 1fr;gap:0.75rem;margin-bottom:0.85rem;align-items:start}
+  .spk{font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding-top:0.22rem;line-height:1.3}
+  .spk-ae{color:var(--blue)}
+  .spk-cust{color:var(--ink-muted)}
+  .spk-csm{color:var(--blue)}
+  .spk-cfo{color:#7C3AED}
+  .spk-it{color:#0F766E}
+  .spk-late{color:#B45309}
+  .dialogue{font-size:0.9rem;color:var(--ink-mid);line-height:1.65}
+  .dialogue p{margin-bottom:0.3rem;font-size:0.9rem}
+  .dialogue p:last-child{margin-bottom:0}
+
+  /* ─── Callouts ─── */
+  .ae-note{background:var(--amber-soft);border-left:3px solid var(--amber-mid);border-radius:0 6px 6px 0;padding:0.9rem 1.1rem;margin:1rem 0;font-size:0.85rem;font-style:italic;color:var(--ink-mid)}
+  .ae-note strong{font-style:normal;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:0.4rem}
+  .ae-note p{font-size:0.85rem;margin-bottom:0.3rem}
+  .ae-note p:last-child{margin-bottom:0}
+  .key-moment{background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 6px 6px 0;padding:0.9rem 1.1rem;margin:1rem 0}
+  .key-moment strong{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:0.4rem}
+  .key-moment p{font-size:0.85rem;color:var(--ink-mid);margin-bottom:0.3rem}
+  .key-moment p:last-child{margin-bottom:0}
+
+  /* ─── Stakeholder Cards ─── */
+  .stakeholder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0}
+  @media(max-width:680px){.stakeholder-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:440px){.stakeholder-grid{grid-template-columns:1fr}}
+  .stakeholder-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.15rem;border-top:3px solid var(--blue)}
+  .stakeholder-name{font-weight:600;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem}
+  .stakeholder-title{font-size:0.76rem;color:var(--ink-muted);margin-bottom:0.8rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border)}
+  .stakeholder-obj-label{font-size:0.63rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:0.35rem}
+  .stakeholder-obj{font-size:0.83rem;color:var(--ink-mid);line-height:1.5}
+
+  /* ─── Insight List ─── */
+  .insight-list{list-style:none;margin:1rem 0}
+  .insight-list li{display:flex;gap:0.75rem;align-items:flex-start;padding:0.6rem 0;border-bottom:1px solid var(--border)}
+  .insight-list li:last-child{border-bottom:none}
+  .insight-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:0.5rem}
+  .insight-list p{font-size:0.9rem;margin:0;color:var(--ink-mid)}
+
+  /* ─── Goal Callout ─── */
+  .goal-box{background:var(--blue-dark);border-radius:12px;padding:2rem 2rem;margin:1.5rem 0;color:#fff}
+  .goal-box .goal-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:0.75rem;display:block}
+  .goal-box .goal-text{font-family:var(--serif);font-size:1.2rem;font-weight:400;font-style:italic;color:#fff;line-height:1.55}
+  .goal-box .goal-sub{font-size:0.85rem;color:rgba(255,255,255,0.65);margin-top:0.85rem;line-height:1.6}
+
+  /* ─── Conditions ─── */
+  .conditions{margin:1.5rem 0}
+  .condition-item{display:flex;gap:1.25rem;padding:1rem 0;border-bottom:1px solid var(--border);align-items:flex-start}
+  .condition-item:last-child{border-bottom:none}
+  .condition-num{font-family:var(--serif);font-size:1.8rem;font-weight:600;color:var(--border-strong);flex-shrink:0;line-height:1;width:40px}
+  .condition-title{font-weight:600;font-size:0.93rem;color:var(--ink);margin-bottom:0}
+
+  /* ─── Pilot Box ─── */
+  .pilot-box{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--amber);border-radius:0 12px 12px 0;padding:1.5rem;margin:1.5rem 0}
+  .pilot-box .pilot-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:0.6rem;display:block}
+  .pilot-box p{font-size:0.9rem;color:var(--ink-mid);margin-bottom:0.5rem}
+
+  /* ─── Phase Cards ─── */
+  .phases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0}
+  @media(max-width:600px){.phases-grid{grid-template-columns:1fr}}
+  .phase-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.4rem;border-top:3px solid var(--blue)}
+  .phase-number{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:0.4rem}
+  .phase-title{font-family:var(--serif);font-size:1.05rem;font-weight:400;color:var(--ink);margin-bottom:0.65rem}
+  .phase-desc{font-size:0.87rem;color:var(--ink-mid);line-height:1.65}
+
+  /* ─── Success Paths ─── */
+  .paths-list{margin:1.5rem 0}
+  .path-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;margin-bottom:0.85rem;display:flex;gap:1.1rem;align-items:flex-start}
+  .path-num{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--blue-mid);flex-shrink:0;line-height:1;width:32px}
+  .path-title{font-weight:600;font-size:0.93rem;color:var(--ink);margin-bottom:0.3rem}
+  .path-desc{font-size:0.87rem;color:var(--ink-mid);line-height:1.65;margin-bottom:0.5rem}
+  .path-signal{font-size:0.8rem;background:var(--blue-soft);color:var(--blue-dark);padding:0.45rem 0.75rem;border-radius:6px;display:inline-block;font-style:italic}
+
+  /* ─── Health Dashboard ─── */
+  .health-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0}
+  @media(max-width:560px){.health-grid{grid-template-columns:1fr}}
+  .health-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.25rem}
+  .health-card-title{font-weight:600;font-size:0.88rem;color:var(--ink);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
+  .health-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0}
+  .health-items{list-style:none}
+  .health-items li{font-size:0.82rem;color:var(--ink-mid);padding:0.3rem 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:0.5rem}
+  .health-items li:last-child{border-bottom:none}
+  .health-items li::before{content:'·';color:var(--blue);font-size:1rem;margin-top:-0.1rem;flex-shrink:0}
+
+  /* ─── Outcome Banner ─── */
+  .outcome-banner{background:var(--blue-dark);border-radius:12px;padding:3rem 2.5rem;margin:1.5rem 0;color:#fff}
+  .outcome-banner h3{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:#fff;margin-bottom:0.4rem}
+  .outcome-banner .sub{font-size:0.88rem;color:rgba(255,255,255,0.6);margin-bottom:2rem}
+  .outcome-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.12);border-radius:8px;overflow:hidden;margin-bottom:2rem}
+  @media(max-width:560px){.outcome-metrics{grid-template-columns:repeat(2,1fr)}}
+  .om-cell{padding:1.4rem 1rem;background:rgba(255,255,255,0.06);text-align:center}
+  .om-num{font-family:var(--serif);font-size:1.8rem;font-weight:600;color:#fff;display:block;line-height:1;margin-bottom:0.3rem}
+  .om-lbl{font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5)}
+  .outcome-body p{margin-bottom:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.8);line-height:1.7}
+  .outcome-body p:last-child{margin-bottom:0}
+
+  /* ─── Key Lesson ─── */
+  .lesson-block{border-top:2px solid var(--blue);padding-top:2.5rem;margin-top:3rem}
+  .lesson-quote{font-family:var(--serif);font-size:clamp(1.2rem,2.5vw,1.55rem);font-weight:300;font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:1.25rem}
+  .lesson-body p{font-size:0.92rem;color:var(--ink-mid);line-height:1.75;margin-bottom:0.75rem}
+
+  /* ─── Discovery Finding ─── */
+  .finding-block{margin:1.5rem 0}
+  .finding-item{padding:1.1rem 0;border-bottom:1px solid var(--border)}
+  .finding-item:last-child{border-bottom:none}
+  .finding-title{font-weight:600;font-size:0.93rem;color:var(--ink);margin-bottom:0.35rem}
+  .finding-body{font-size:0.88rem;color:var(--ink-mid);line-height:1.65}
+
+  /* ─── Footer ─── */
+  footer{background:var(--ink);padding:2.5rem 0;margin-top:5rem}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  .footer-name{font-weight:600;color:#fff;font-size:0.95rem}
+  .footer-role{font-size:0.8rem;color:rgba(255,255,255,0.45)}
+  .footer-note{font-size:0.78rem;color:rgba(255,255,255,0.35);text-align:right}
+
+  /* ─── Account Info ─── */
+  .account-info{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:0.8rem 1rem;margin-bottom:1rem;font-size:0.83rem;color:var(--ink-mid);display:flex;flex-wrap:wrap;gap:0.4rem 1.25rem}
+  .account-info span{display:flex;align-items:center;gap:0.35rem}
+  .account-info .dot{width:5px;height:5px;border-radius:50%;background:var(--blue);display:inline-block}
+  .italic{font-style:italic}
+  .small{font-size:0.85rem;color:var(--ink-muted)}
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Customer Success · Portfolio Case Study</div>
+    <h1 class="display display-xl hero-title">How I Designed a 60-Day Onboarding Plan to Improve Payment Governance Across a <span style="color:var(--blue)">Multi-Entity FMCG Group</span></h1>
+    <p class="hero-sub">Replacing WhatsApp approvals with structured, auditable workflows — Vantage Consumer Group on Duplo</p>
+
+    <div class="metrics-row">
+      <div class="metric-cell">
+        <span class="metric-num">45→95%</span>
+        <span class="metric-lbl">Invoice compliance</span>
+      </div>
+      <div class="metric-cell">
+        <span class="metric-num">−70%</span>
+        <span class="metric-lbl">Off-workflow approvals</span>
+      </div>
+      <div class="metric-cell">
+        <span class="metric-num">3→1 day</span>
+        <span class="metric-lbl">Approval turnaround</span>
+      </div>
+      <div class="metric-cell">
+        <span class="metric-num">60</span>
+        <span class="metric-lbl">Days</span>
+      </div>
+    </div>
+
+    <div class="byline">
+      <div class="byline-avatar">FA</div>
+      <div>
+        <div class="byline-name">Feranmi Akinleye</div>
+        <div class="byline-role">Customer Success Associate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MAIN ─── -->
+<main>
+<div class="container">
+
+  <!-- Disclaimer -->
+  <div class="section" style="padding-bottom:0">
+    <div class="disclaimer">
+      <div>📋</div>
+      <p><strong>Simulated exercise:</strong> This is a simulated onboarding exercise meant to show how I would approach onboarding a customer onto Duplo. The customer, stakeholders, rollout plan, success conditions, and results are fictional — but built around realistic problems that growing African businesses face when handling approvals, vendor payments, and financial control across multiple entities.</p>
+    </div>
+  </div>
+
+  <!-- ─── TOGGLE: CONVERSATIONS ─── -->
+  <div class="section" style="padding-bottom:0">
+    <div class="section-label">
+      <span class="section-label-line"></span>
+      <span class="section-label-text">The Conversations</span>
+      <span class="section-label-line"></span>
+    </div>
+    <p class="small" style="text-align:center;margin-bottom:1.25rem">Full transcripts from discovery through close and CS kickoff. Toggle each section to read.</p>
+
+    <div class="conversations-wrapper">
+
+      <!-- Toggle 1: Sales -->
+      <button class="conv-toggle-btn" onclick="toggleConv(this)" aria-expanded="false">
+        <div class="toggle-label">
+          <span class="toggle-tag">Sales</span>
+          <span class="toggle-title">Sales &amp; Discovery Conversations (9 sections)</span>
+        </div>
+        <span class="toggle-arrow">▼</span>
+      </button>
+      <div class="toggle-content" role="region">
+        <div class="toggle-inner">
+
+          <!-- Account Overview -->
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-sales">Account</span>
+              <h4>Vantage Consumer Group (VCG)</h4>
+            </div>
+            <div class="call-body">
+              <div class="account-info">
+                <span><span class="dot"></span> FMCG</span>
+                <span><span class="dot"></span> Nigeria, Ghana, Kenya, UK</span>
+                <span><span class="dot"></span> ~420 employees</span>
+                <span><span class="dot"></span> Finance, procurement, treasury, ops &amp; IT</span>
+              </div>
+              <p class="small" style="margin-bottom:0.5rem"><strong>Key stakeholders:</strong></p>
+              <div class="attendees">
+                <span class="attendee-pill">Chinedu — CFO</span>
+                <span class="attendee-pill">Adaeze — Group Financial Controller</span>
+                <span class="attendee-pill">Nkechi — Finance Ops Lead</span>
+                <span class="attendee-pill">Bayo — Procurement Manager</span>
+                <span class="attendee-pill">Tunde — IT Lead</span>
+                <span class="attendee-pill">Ama — Operations Manager, Ghana</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 1: Inbound -->
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-sales">1 of 9</span>
+              <h4>Inbound / First Response</h4>
+            </div>
+            <div class="call-body">
+              <div class="transcript" style="border-top:none;padding-top:0">
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Hi, we are looking at payment automation and expense control. We operate across a few countries and the process is getting messy.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Thanks, Adaeze. Happy to help. Is the main issue payments, approvals, or reporting?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Honestly… all three. Payments are part of it. Approvals too. Finance is always chasing people for documents.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Understood. Who else is involved on your side?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Finance, procurement, and maybe treasury. I will need to loop in my CFO.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Makes sense. What are you using today?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Too many things.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Can you say a bit more?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Bank portals, Excel, email, WhatsApp. Please don't judge.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Not judging. That is actually common.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Common is not the same as okay.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: First Discovery -->
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-sales">2 of 9</span>
+              <h4>First Discovery Call</h4>
+            </div>
+            <div class="call-body">
+              <div class="attendees-label">Attendees</div>
+              <div class="attendees">
+                <span class="attendee-pill">Duplo AE</span>
+                <span class="attendee-pill">Adaeze</span>
+                <span class="attendee-pill">Bayo</span>
+                <span class="attendee-pill">Nkechi</span>
+              </div>
+              <div class="transcript">
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Thanks for joining. Maybe start with the biggest pain point.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Vendor payments. And approvals. And then reconciliation after the fact.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">Procurement is not the problem. People buy first, then expect us to clean it up.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Nkechi</span><div class="dialogue">That is not always true.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">It is true more than you think.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Fair. How are approvals handled today?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">WhatsApp.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Entirely?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Mostly. Sometimes email. Sometimes someone just calls and says, "it has been approved."</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">And who is the final approver?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Depends on the amount.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Is that documented?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Somewhere. I think.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Nkechi</span><div class="dialogue">In theory.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">In somebody's head.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">What about countries?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Nigeria, Ghana, Kenya, UK.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Same process in all of them?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">No. That would be too easy.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Qualification -->
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-sales">3 of 9</span>
+              <h4>Qualification / Deeper Discovery</h4>
+            </div>
+            <div class="call-body">
+              <div class="transcript" style="border-top:none;padding-top:0">
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Roughly how many payments are you making a month?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">It depends.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">That usually means there are several numbers floating around.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">Procurement has one number. Finance has another. Ops has another. None match.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Are we talking tens, hundreds, or thousands?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Hundreds. Probably more when you count everything.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">What is breaking most often?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Nkechi</span><div class="dialogue">Missing documents.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Duplicate payments.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">Late approvals.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Which of those hurts the most?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Audit issues. The board is asking questions now.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">So this is not just convenience.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">No. We are getting pressure.</div></div>
+              </div>
+              <div class="key-moment">
+                <strong>The Real Driver</strong>
+                <p>The purchase is being driven by board-level audit pressure — not operational discomfort. This is a governance problem, not a workflow preference.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Demo -->
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-sales">4 of 9</span>
+              <h4>Demo / Solution Mapping</h4>
+            </div>
+            <div class="call-body">
+              <div class="transcript" style="border-top:none;padding-top:0">
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">I'll show you how approval workflows work first, since that seems like the biggest gap.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Good. But remember, our users are not exactly disciplined.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">That is why the workflow matters.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">Can procurement raise a request, or does finance need to do it?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Either, depending on your process.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">That answer already sounds dangerous.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Nkechi</span><div class="dialogue">We do not really have that today.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Then that is one of the design points.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">What about cross-border payments?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Supported. Local and international workflows can sit together.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Can we separate Nigeria from Ghana from Kenya?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Yes.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">And can approval levels differ by entity?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Yes.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Good. Because if one workflow is forced on all entities, this will fail.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Stakeholder Expansion -->
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-sales">5 of 9</span>
+              <h4>Stakeholder Expansion — CFO Joins</h4>
+            </div>
+            <div class="call-body">
+              <div class="transcript" style="border-top:none;padding-top:0">
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">Sorry, I'm late. What exactly are we buying here?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Right now, we are mapping the pain around payments, approvals, and reconciliation across entities.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">That sounds broad.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">It is broad because the problem is broad.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">Fair. But I want to know the business value, not just the product features.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">The value is fewer manual handoffs, cleaner audit trails, faster payment processing, and less month-end pain.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">How much less?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Depends on adoption.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">That is not an answer.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">True. To be blunt, if your current process is heavily manual, the gains can be meaningful. But we would need to map your actual workflow.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">Who owns this internally?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Finance.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">Procurement also.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">That means nobody owns it.</div></div>
+              </div>
+              <div class="ae-note">
+                <strong>AE Observation</strong>
+                <p>The CFO has identified the core governance gap in one line. Lack of clear ownership is the root cause beneath the WhatsApp approval problem.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 6: Technical / Compliance -->
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-sales">6 of 9</span>
+              <h4>Technical / Security / Compliance Questions</h4>
+            </div>
+            <div class="call-body">
+              <div class="attendees-label">New attendees</div>
+              <div class="attendees" style="margin-bottom:1rem">
+                <span class="attendee-pill">IT Lead (Tunde)</span>
+                <span class="attendee-pill">Compliance Lead</span>
+              </div>
+              <div class="transcript">
+                <div class="exchange"><span class="spk spk-it">Tunde (IT)</span><div class="dialogue">Before we go further, how does access control work?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Role-based permissions can be set by team, entity, and user level.</div></div>
+                <div class="exchange"><span class="spk spk-it">Tunde (IT)</span><div class="dialogue">Can we restrict payment initiation from approval?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Yes.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Compliance</span><div class="dialogue">Do you keep audit logs? For every approval? Who can edit records?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Yes to audit logs, for every approval. Edit access depends on the permission structure — we can define it clearly in the workflow.</div></div>
+                <div class="exchange"><span class="spk spk-it">Tunde (IT)</span><div class="dialogue">Can it integrate with our existing systems?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Which systems?</div></div>
+                <div class="exchange"><span class="spk spk-it">Tunde (IT)</span><div class="dialogue">That is the problem. Several.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Okay. Then we should map the integration priorities first.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">It is more work, but less chaos later.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 7: Pricing -->
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-sales">7 of 9</span>
+              <h4>Pricing / Procurement / Commercial Pushback</h4>
+            </div>
+            <div class="call-body">
+              <div class="transcript" style="border-top:none;padding-top:0">
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">So what is the cost?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">It depends on modules, usage, and rollout scope.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">That sounds expensive.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">It sounds flexible.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">Same thing.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Fair. The question is whether the manual process costs more than the platform.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">What is the implementation effort?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Depends on how much process cleanup is needed.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">Again with "depends."</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Because your process is not fully defined yet.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">That is exactly why I am cautious.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Understood. We should probably narrow the first phase instead of over-scoping.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 8 / 9: Scope + Close -->
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-sales">8 of 9</span>
+              <h4>Final Scope Definition</h4>
+            </div>
+            <div class="call-body">
+              <div class="transcript" style="border-top:none;padding-top:0">
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Based on what we have heard, I would suggest starting with vendor payments, approvals, and reconciliation.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Not collections?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Not first.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">Not FX management either?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">We can discuss that later, but I would not lead with it.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">Good. Too many moving parts is how projects die.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">So what exactly goes in phase one?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Expense control, approval workflows, vendor payments, and reconciliation for your main operating entities.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">And the rest?</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">The rest stays as expansion.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">Fine. That sounds more manageable.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-sales">9 of 9</span>
+              <h4>Close / Commercial Sign-Off</h4>
+            </div>
+            <div class="call-body">
+              <div class="transcript" style="border-top:none;padding-top:0">
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">Send the revised proposal.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Make sure the entity names are correct this time.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">I want the scope written clearly. No vague language. And I want confidence that we are not buying a tool that finance alone will use.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">Understood. Adoption across finance, procurement, and ops is part of the value.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">We will need help getting users to stop using WhatsApp.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">That will probably be half the battle.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">Probably more than half.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">Let's not pretend this is simple.</div></div>
+                <div class="exchange"><span class="spk spk-ae">Duplo AE</span><div class="dialogue">I wouldn't.</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Toggle 2: CS Kickoff -->
+      <button class="conv-toggle-btn" onclick="toggleConv(this)" aria-expanded="false">
+        <div class="toggle-label">
+          <span class="toggle-tag">CS</span>
+          <span class="toggle-title">Customer Success Kickoff Call</span>
+        </div>
+        <span class="toggle-arrow">▼</span>
+      </button>
+      <div class="toggle-content" role="region">
+        <div class="toggle-inner">
+
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-cs">Context</span>
+              <h4>Deal Closed — Moving to Implementation</h4>
+            </div>
+            <div class="call-body">
+              <p class="small" style="margin-bottom:0.75rem">The team is moving from "this sounds useful" to "how do we actually make this work without breaking operations?"</p>
+              <div class="attendees-label">On the call</div>
+              <div class="attendees" style="margin-bottom:0.5rem">
+                <span class="attendee-pill">Feranmi — Duplo CSM</span>
+                <span class="attendee-pill">Adaeze — Group Financial Controller</span>
+                <span class="attendee-pill">Nkechi — Finance Ops Lead</span>
+                <span class="attendee-pill">Bayo — Procurement Manager</span>
+                <span class="attendee-pill">Chinedu — CFO</span>
+                <span class="attendee-pill">Tunde — IT Lead</span>
+              </div>
+              <div class="attendees-label">Joined late / partial</div>
+              <div class="attendees">
+                <span class="attendee-pill missing">Kemi — Treasury / FX (joined late)</span>
+                <span class="attendee-pill missing">Abel — Operations rep (came in halfway, hadn't read anything)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="call-block">
+            <div class="call-header">
+              <span class="call-badge badge-cs">Kickoff</span>
+              <h4>Full Kickoff Transcript</h4>
+            </div>
+            <div class="call-body">
+              <div class="transcript" style="border-top:none;padding-top:0">
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">Good morning, everyone. Today is mostly about confirming what was sold, who owns what, and what needs to happen before rollout.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Yes, please. Because at the sales stage this sounded simple, and now it is starting to look less simple.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">That is fair. The signed scope says phase one covers expense management, approval workflows, vendor payments, and reconciliation for the main operating entities. Is that still accurate?</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">Mostly.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">What is not accurate?</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">"Main operating entities" is too vague. We need to be clear on which entities are going first. We are not onboarding the whole group at once.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">I thought we were starting with Nigeria, Ghana, and Kenya.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">Who said that?</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">Discussed is not approved.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">Okay. So let us separate discussed from confirmed. Which entities are in phase one?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Nigeria for sure.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">And maybe Ghana, because they are the noisiest.</div></div>
+                <div class="exchange"><span class="spk spk-late">Kemi</span><div class="dialogue">Please do not use "noisiest" as a rollout criterion.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">Fair. So Nigeria is confirmed. Ghana and Kenya are under review.</div></div>
+              </div>
+              <div class="ae-note">
+                <strong>CSM Flag</strong>
+                <p>First major gap: entity scope was assumed, not confirmed. "Discussed is not approved" — the CSM now owns driving this to a written decision before configuration begins.</p>
+              </div>
+              <div class="transcript">
+                <p class="small italic" style="margin-bottom:0.75rem">Which problem comes first?</p>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">We should not try to fix everything at once. If we had to choose the first workflow to clean up, which would it be?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">The biggest issue is approvals.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Nkechi</span><div class="dialogue">No, the biggest issue is payment visibility.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">No, the biggest issue is procurement being blamed for everything.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">Payment approvals.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">And what is the actual current process?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">Someone raises a request in WhatsApp or email or sometimes both. Then the manager replies "approved." Then finance tries to find the document. Then someone asks for a budget code. Then procurement gets dragged in if the vendor is involved.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">Okay. So the workflow problem is real. That means we need to map the approval chain properly before go-live.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">How much mapping are we talking?</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">Enough to stop the chaos. For example: who can raise a request, who approves by amount, who checks budget, who releases payment, and who sees the record after it is paid.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">That is already more structure than we have now.</div></div>
+              </div>
+              <div class="transcript">
+                <p class="small italic" style="margin-bottom:0.75rem">Technical ownership + vendor payment scope</p>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">Tunde, can you tell us who from IT will own the technical side?</div></div>
+                <div class="exchange"><span class="spk spk-it">Tunde</span><div class="dialogue">I guess I will, unless someone is hiding a more senior person.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">Are we integrating with ERP or accounting software in phase one?</div></div>
+                <div class="exchange"><span class="spk spk-it">Tunde</span><div class="dialogue">Finance uses something, procurement uses something else, and some teams are still in Excel. So… probably not a deep integration at first.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">Okay. Then phase one is more operational than technical. We can still map exports and reconciliation needs.</div></div>
+              </div>
+              <div class="transcript">
+                <p class="small italic" style="margin-bottom:0.75rem">Spend matrix, audit trail, and adoption risk</p>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">Now, the part everyone forgets. Who approves what?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">You mean the part nobody currently agrees on?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">We have rough rules. Small spends go to managers. Bigger spends go to directors. Very big spends go to Chinedu.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">How rough is "rough"?</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">That is the problem.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">Then before configuration, we need a spend matrix. Not perfect, but clear enough to start.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">And user adoption — what is the real risk?</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">People will keep using WhatsApp.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">People will definitely keep using WhatsApp.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Nkechi</span><div class="dialogue">Especially when something is urgent.</div></div>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue">That is normal. But for go-live, we need agreement on what channels are official. Otherwise Duplo becomes optional.</div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">It cannot be optional if we are paying for it.</div></div>
+              </div>
+              <div class="key-moment">
+                <strong>Abel Joins Late</strong>
+                <div class="exchange" style="margin:0.5rem 0 0.25rem">
+                  <span class="spk spk-late">Abel</span>
+                  <div class="dialogue">Sorry, I missed the start. So no more "just send it on WhatsApp"?</div>
+                </div>
+                <div class="exchange" style="margin-bottom:0">
+                  <span class="spk spk-csm">Feranmi</span>
+                  <div class="dialogue">That is the goal.</div>
+                </div>
+              </div>
+              <div class="transcript">
+                <p class="small italic" style="margin-bottom:0.75rem">Confirmed ownership map</p>
+                <div class="exchange"><span class="spk spk-csm">Feranmi</span><div class="dialogue"><p>Before we end, I want to confirm ownership:</p><p>· Adaeze — executive sponsor, finance side</p><p>· Nkechi — day-to-day champion</p><p>· Tunde — technical coordination</p><p>· Kemi — treasury / FX input</p><p>· Bayo — procurement input</p><p>· Chinedu — final decisions on scope and approvals</p><p>Is that fair?</p></div></div>
+                <div class="exchange"><span class="spk spk-cfo">Chinedu</span><div class="dialogue">Yes.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Adaeze</span><div class="dialogue">More or less.</div></div>
+                <div class="exchange"><span class="spk spk-cust">Bayo</span><div class="dialogue">Unfortunately, yes.</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /conversations-wrapper -->
+  </div>
+
+  <!-- ─── Customer Snapshot ─── -->
+  <section class="section">
+    <div class="section-label">
+      <span class="section-label-line"></span>
+      <span class="section-label-text">Understanding the Customer</span>
+      <span class="section-label-line"></span>
+    </div>
+    <h2 class="section-heading">Customer Snapshot</h2>
+    <div class="stakeholder-grid">
+      <div class="stakeholder-card">
+        <div class="stakeholder-name">Chinedu</div>
+        <div class="stakeholder-title">Chief Financial Officer</div>
+        <div class="stakeholder-obj-label">Primary Objective</div>
+        <div class="stakeholder-obj">Governance, visibility, and financial control across entities.</div>
+      </div>
+      <div class="stakeholder-card">
+        <div class="stakeholder-name">Adaeze</div>
+        <div class="stakeholder-title">Group Financial Controller</div>
+        <div class="stakeholder-obj-label">Primary Objective</div>
+        <div class="stakeholder-obj">Auditability, consistent reporting, and standardised processes.</div>
+      </div>
+      <div class="stakeholder-card">
+        <div class="stakeholder-name">Nkechi</div>
+        <div class="stakeholder-title">Finance Operations Lead</div>
+        <div class="stakeholder-obj-label">Primary Objective</div>
+        <div class="stakeholder-obj">Efficient payment processing and reconciliation. Day-to-day champion.</div>
+      </div>
+      <div class="stakeholder-card">
+        <div class="stakeholder-name">Bayo</div>
+        <div class="stakeholder-title">Procurement Manager</div>
+        <div class="stakeholder-obj-label">Primary Objective</div>
+        <div class="stakeholder-obj">Supplier management and operational efficiency. Gatekeeper for adoption.</div>
+      </div>
+      <div class="stakeholder-card">
+        <div class="stakeholder-name">Tunde</div>
+        <div class="stakeholder-title">IT Lead</div>
+        <div class="stakeholder-obj-label">Primary Objective</div>
+        <div class="stakeholder-obj">System readiness, user access management, and integration oversight.</div>
+      </div>
+      <div class="stakeholder-card">
+        <div class="stakeholder-name">Ama</div>
+        <div class="stakeholder-title">Operations Manager, Ghana</div>
+        <div class="stakeholder-obj-label">Primary Objective</div>
+        <div class="stakeholder-obj">Operational continuity for the Ghana entity during rollout.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Why Evaluating ─── -->
+  <section class="section">
+    <h2 class="section-heading">Why VCG Started Evaluating Duplo</h2>
+    <p>VCG was not looking for a new payment platform because payments were failing. The company could already pay suppliers. The real problem was everything that happened before and after the payment.</p>
+    <div class="finding-block">
+      <div class="finding-item">
+        <div class="finding-title">Approvals were happening on WhatsApp</div>
+        <div class="finding-body">Approval rules existed but were not followed consistently. Different teams used different methods. Escalations often happened over chat or phone with no paper trail.</div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-title">Supporting documents were sitting in email threads</div>
+        <div class="finding-body">Invoices, approvals, and support documents were spread across several systems and chat channels. Reconstructing a full payment history often meant manual detective work.</div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-title">Finance was always chasing people for missing information</div>
+        <div class="finding-body">At month-end, the team often had to piece together payment history from different places — different providers, email threads, and WhatsApp messages.</div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-title">Growth was making things more complex</div>
+        <div class="finding-body">Operating across Nigeria, Ghana, Kenya, and the UK meant the process that worked at a smaller scale was increasingly fragile under multi-entity complexity.</div>
+      </div>
+    </div>
+    <div class="goal-box" style="margin-top:1.5rem">
+      <span class="goal-label">The CFO's diagnosis</span>
+      <div class="goal-text">"The issue is not whether we can pay vendors. It is whether we can confidently explain how and why those payments happened."</div>
+      <p class="goal-sub">This was not a payments problem. It was a governance problem.</p>
+    </div>
+  </section>
+
+  <!-- ─── Onboarding Goal ─── -->
+  <section class="section">
+    <h2 class="section-heading">My Onboarding Goal</h2>
+    <p>My goal was not to get more logins. My goal was not just to finish setup. My goal was to make Duplo the trusted place for high-value vendor payments.</p>
+    <div class="goal-box">
+      <span class="goal-label">Day 60 target</span>
+      <div class="goal-text">High-value vendor payments could only move forward if the right approvals and supporting documents were already inside the workflow.</div>
+      <p class="goal-sub">If that happened, governance, visibility, and auditability would improve naturally. Technology adoption was the result. Behaviour change was the goal.</p>
+    </div>
+  </section>
+
+  <!-- ─── Success Conditions ─── -->
+  <section class="section">
+    <h2 class="section-heading">Success Conditions</h2>
+    <p>Before planning the rollout, I mapped the conditions needed for long-term adoption.</p>
+    <div class="conditions">
+      <div class="condition-item">
+        <div class="condition-num">01</div>
+        <div><div class="condition-title">A clear approval matrix must exist</div></div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-num">02</div>
+        <div><div class="condition-title">Finance and Procurement must agree on who owns which part of the process</div></div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-num">03</div>
+        <div><div class="condition-title">Approval requests must increasingly start inside Duplo instead of WhatsApp or email</div></div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-num">04</div>
+        <div><div class="condition-title">Supporting documents must always be attached to payment requests</div></div>
+      </div>
+      <div class="condition-item">
+        <div class="condition-num">05</div>
+        <div><div class="condition-title">Leadership must actively support and reinforce the new process</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Rollout Strategy ─── -->
+  <section class="section">
+    <h2 class="section-heading">Rollout Strategy: The Controlled Pilot</h2>
+    <p>Instead of rolling out to the whole company at once, I designed a controlled pilot focused on the smallest footprint that could generate real signal.</p>
+    <div class="pilot-box">
+      <span class="pilot-label">Pilot scope</span>
+      <p><strong style="color:var(--ink)">One procurement team.</strong> Three high-volume vendors. One approval workflow.</p>
+      <p>Bayo's procurement team became the pilot group. The selected vendors represented a meaningful part of payment activity, but were still small enough to manage closely.</p>
+      <p>The idea was simple: if Procurement adopted the workflow, Finance would have real transactions to review and validate. This was not just a user onboarding exercise. It was an attempt to change the path money took through the organisation.</p>
+    </div>
+  </section>
+
+  <!-- ─── Six Phases ─── -->
+  <section class="section">
+    <div class="section-label">
+      <span class="section-label-line"></span>
+      <span class="section-label-text">Execution</span>
+      <span class="section-label-line"></span>
+    </div>
+    <h2 class="section-heading">The Six-Phase Onboarding Plan</h2>
+    <div class="phases-grid">
+
+      <div class="phase-card">
+        <div class="phase-number">Phase 1</div>
+        <div class="phase-title">Understand the Real Workflow</div>
+        <div class="phase-desc">I started with process observation sessions. Instead of relying on written procedures, I asked Nkechi and her team to walk me through recent vendor payments from start to finish. This revealed what people actually did, common workarounds, where delays happened, and where the process was bypassed. The goal was to understand reality before trying to change it.</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-number">Phase 2</div>
+        <div class="phase-title">Build the Easiest Path</div>
+        <div class="phase-desc">People rarely leave familiar workflows just because they attended training. They change when the new workflow is easier. I worked with Tunde and Adaeze to make raising, reviewing, and approving payments inside Duplo feel simpler than chasing approvals through scattered channels. I showed Nkechi how to use bulk-upload features and basic templates. The goal was to reduce friction, not increase pressure.</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-number">Phase 3</div>
+        <div class="phase-title">Activate the Key People</div>
+        <div class="phase-desc">I did not start with broad training. Instead I focused on the people who controlled payment flow. Bayo and his main managers received targeted onboarding centred on one behaviour: approving payments inside the workflow. Bayo was not just a user — he was a gatekeeper. If he used the process, his team would follow. If he kept approving outside the workflow, adoption would stay weak.</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-number">Phase 4</div>
+        <div class="phase-title">Use Executive Support to Reinforce Change</div>
+        <div class="phase-desc">The CFO (Chinedu) became a key adoption partner. His role was not daily usage — it was to reinforce expectations. Whenever there was confusion about ownership, scope, or process compliance, leadership helped bring clarity. Executive support turned onboarding from a software rollout into a company-wide change effort.</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-number">Phase 5</div>
+        <div class="phase-title">Watch for Workflow Leakage</div>
+        <div class="phase-desc">I also tracked what was happening outside the workflow. Each week, Finance reviewed emergency payments, approvals made outside the workflow, missing documents, and vendor requests that were not tracked. This gave visibility into adoption risks before they turned into bigger behaviour problems.</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-number">Phase 6</div>
+        <div class="phase-title">Handle Urgent Requests Without Weakening Control</div>
+        <div class="phase-desc">Urgency is one of the biggest reasons people bypass systems. Instead of ignoring that reality, the customer and I agreed on an escalation path for urgent payments — staying compliant while still responding quickly. The goal was to stay on-platform even under pressure, so urgency never became an excuse for bypassing governance.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Success Paths ─── -->
+  <section class="section">
+    <h2 class="section-heading">Five Success Paths</h2>
+    <p>Each path targeted a specific behaviour and carried a specific signal I could observe and measure. The paths ran concurrently — not sequentially.</p>
+    <div class="paths-list">
+
+      <div class="path-item">
+        <div class="path-num">1</div>
+        <div>
+          <div class="path-title">Gatekeeper Activation</div>
+          <div class="path-desc">Focused only on Bayo and the three highest-volume vendors. I cut off the old payment path for those vendors and moved them into Duplo. I tracked the total number of invoices expected from each vendor each week — so I knew exactly how many transactions must appear in the workflow.</div>
+          <span class="path-signal">Signal: Were the expected invoices appearing in Duplo?</span>
+        </div>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">2</div>
+        <div>
+          <div class="path-title">Live Onboarding Behaviour</div>
+          <div class="path-desc">I used a live onboarding session where the procurement team set up access in the room, in real time. I didn't want users setting up accounts privately and slipping back into old habits.</div>
+          <span class="path-signal">Signal: Zero delay in activation. If someone couldn't sign in before the session ended, the rollout was still fragile.</span>
+        </div>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">3</div>
+        <div>
+          <div class="path-title">WhatsApp Deflection</div>
+          <div class="path-desc">Bayo changed his WhatsApp status and auto-reply so that approval requests for the pilot vendors could not be handled outside the platform. Every time someone tried to bypass the workflow, the request was pushed back into Duplo.</div>
+          <span class="path-signal">Signal: How often were WhatsApp attempts redirected? Did that number eventually fall to zero?</span>
+        </div>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">4</div>
+        <div>
+          <div class="path-title">Sandbox Leakage</div>
+          <div class="path-desc">Every Friday, Finance (Nkechi) checked whether any money had left the business for pilot vendors without appearing in Duplo. If that happened, it meant the workflow had been bypassed. The signal was not usage — it was leakage.</div>
+          <span class="path-signal">Signal: Any payment to pilot vendors without a corresponding Duplo record.</span>
+        </div>
+      </div>
+
+      <div class="path-item">
+        <div class="path-num">5</div>
+        <div>
+          <div class="path-title">Pressure Valve</div>
+          <div class="path-desc">Nkechi and I set up a dedicated "Express Bypass Workflow" inside Duplo for operations emergencies — like a container stuck at the Lagos port. This workflow stripped away minor administrative fields and required only two things: a PDF invoice upload and a single tap from a designated executive.</div>
+          <span class="path-signal">Signal: How fast was the executive signature added? Was the platform fast enough to handle real business pressure?</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Health Dashboard ─── -->
+  <section class="section">
+    <div class="section-label">
+      <span class="section-label-line"></span>
+      <span class="section-label-text">Monitoring</span>
+      <span class="section-label-line"></span>
+    </div>
+    <h2 class="section-heading">Customer Health Dashboard</h2>
+    <p>I tracked customer health indicators across four areas throughout the 60-day period.</p>
+    <div class="health-grid">
+      <div class="health-card">
+        <div class="health-card-title"><span class="health-dot"></span>Governance</div>
+        <ul class="health-items">
+          <li>Approval matrix adoption</li>
+          <li>Approval workflow completion rate</li>
+          <li>Approval turnaround time</li>
+          <li>Policy exception volume</li>
+        </ul>
+      </div>
+      <div class="health-card">
+        <div class="health-card-title"><span class="health-dot"></span>Auditability</div>
+        <ul class="health-items">
+          <li>Invoice attachment compliance</li>
+          <li>Missing document rate</li>
+          <li>Audit trail completeness</li>
+        </ul>
+      </div>
+      <div class="health-card">
+        <div class="health-card-title"><span class="health-dot"></span>Behavioural Adoption</div>
+        <ul class="health-items">
+          <li>Approval requests outside the workflow</li>
+          <li>Dependence on WhatsApp for approvals</li>
+          <li>Repeat bypass behaviour</li>
+          <li>Untracked payment requests</li>
+        </ul>
+      </div>
+      <div class="health-card">
+        <div class="health-card-title"><span class="health-dot"></span>Executive Confidence</div>
+        <ul class="health-items">
+          <li>Leadership participation</li>
+          <li>Approval matrix sign-off</li>
+          <li>Readiness to expand</li>
+          <li>Consistency of enforcement</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Outcome ─── -->
+  <section class="section">
+    <div class="section-label">
+      <span class="section-label-line"></span>
+      <span class="section-label-text">Results</span>
+      <span class="section-label-line"></span>
+    </div>
+    <div class="outcome-banner">
+      <h3>Outcome: 60 Days</h3>
+      <p class="sub">Controlled pilot — Vantage Consumer Group on Duplo</p>
+      <div class="outcome-metrics">
+        <div class="om-cell">
+          <span class="om-num">45→95%</span>
+          <span class="om-lbl">Invoice compliance</span>
+        </div>
+        <div class="om-cell">
+          <span class="om-num">−70%</span>
+          <span class="om-lbl">Off-workflow approvals</span>
+        </div>
+        <div class="om-cell">
+          <span class="om-num">3→1 day</span>
+          <span class="om-lbl">Approval turnaround</span>
+        </div>
+        <div class="om-cell">
+          <span class="om-num">✓</span>
+          <span class="om-lbl">Expansion approved</span>
+        </div>
+      </div>
+      <div class="outcome-body">
+        <p>Approval requests for pilot vendors increasingly started inside Duplo instead of through WhatsApp or email. Invoice attachment compliance improved from about 45% to 95%. Off-workflow approval requests dropped by about 70%. Approval turnaround time fell from an average of three days to one day for pilot transactions.</p>
+        <p>Finance also spent much less time rebuilding approval history during payment reviews because the supporting documents and approval records were now in one workflow.</p>
+        <p>Most importantly, the customer showed real behaviour change. The organisation moved away from informal approval habits and toward a more controlled process with clearer accountability, stronger auditability, and better visibility into how money moved across the business. Based on the pilot results, leadership approved planning for expansion beyond the first vendor group.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Key Lesson ─── -->
+  <section class="section-last">
+    <div class="lesson-block">
+      <h3 class="sub-heading">Key Lesson</h3>
+      <div class="lesson-quote">"Technology adoption was the result. Behaviour change was the goal."</div>
+      <div class="lesson-body">
+        <p>The real work was not getting users into a platform. The real work was understanding how the customer moved money, finding where governance broke down, and helping people adopt a process they trusted enough to use by default.</p>
+        <p>That is the approach I would bring to onboarding customers at Duplo.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<!-- ─── Footer ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-name">Feranmi Akinleye</div>
+        <div class="footer-role">Customer Success Associate · Lagos, Nigeria</div>
+      </div>
+      <div class="footer-note">Portfolio Case Study · Simulated Exercise<br>Duplo Payment Governance Onboarding</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleConv(btn) {
+    var content = btn.nextElementSibling;
+    var isOpen = btn.classList.contains('active');
+    if (isOpen) {
+      content.style.height = content.scrollHeight + 'px';
+      requestAnimationFrame(function() { content.style.height = '0'; });
+      btn.classList.remove('active');
+      btn.setAttribute('aria-expanded', 'false');
+    } else {
+      btn.classList.add('active');
+      btn.setAttribute('aria-expanded', 'true');
+      content.style.height = content.scrollHeight + 'px';
+      content.addEventListener('transitionend', function once() {
+        content.style.height = 'auto';
+        content.removeEventListener('transitionend', once);
+      });
+    }
+  }
+</script>
+</body>
+</html>
